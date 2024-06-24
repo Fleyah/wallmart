@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="4; URL=wallet.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Translucent Popup</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #17212b;;
+    }
+
+    #logoContainer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(2);
+      /* Zoom in 2x */
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      z-index: 9999;
+    }
+
+    #logo {
+      width: 200px;
+      /* Adjust the width of your logo */
+      height: auto;
+    }
+
+    #textContainer {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 9999;
+    }
+
+    #displayText {
+      font-family: 'Arial', sans-serif;
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* Media query for screens with a maximum width of 600px (typical for mobile devices) */
+    @media (max-width: 600px) {
+      #logoContainer {
+        top: 50%;
+      }
+
+      #textContainer {
+        top: 50%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  
+
+  <div id="logoContainer">
+    <img id="logo"
+      src="img/8.png"
+      alt="Logo">
+  </div>
+
+  <div id="textContainer">
+    <p id="displayText">nothing</p>
+  </div>
+
+  <script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      var logoContainer = document.getElementById('logoContainer');
+      var textContainer = document.getElementById('textContainer');
+
+      // Show the logo container with zoom-in effect
+      setTimeout(function () {
+        logoContainer.style.opacity = 1;
+        logoContainer.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 0);
+
+      // Wait for 3 seconds
+      setTimeout(function () {
+        // Fade out the logo with translucency
+        var fadeOutInterval = setInterval(function () {
+          var currentOpacity = parseFloat(getComputedStyle(logoContainer).opacity);
+          if (currentOpacity > 0) {
+            logoContainer.style.opacity = (currentOpacity - 0.1).toFixed(1);
+          } else {
+            clearInterval(fadeOutInterval);
+
+            // Show the text container
+            setTimeout(function () {
+              textContainer.style.opacity = 1;
+            }, 1000); // wait for 1 second after fading out the logo
+          }
+        }, 100);
+      }, 3000);
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+</head>
+<body>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic");
+        body {
+            background-color: #17212b;
+            font-family: "Rubik", sans-serif;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            color: white;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+
+            animation: fadeIn 1s ease-in forwards; /* Apply fade-in animation */
+            }
+            @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+        
+
+        .block {
+            background-color: #17212b;
+            color: white;
+            font-family: "Rubik", sans-serif;
+            display: flex;
+            padding: 5px;
+            margin: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .smalltext {
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .texxt {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: row nowrap;
+            width: 20%; /* 1/5 of the screen width */
+            text-align: center;
+        }
+
+        .currency, .whole, .decimal {
+            line-height: 1;
+        }
+
+        .currency {
+            font-size: 5rem;
+            color: #718498;
+            margin: 0;
+            vertical-align: baseline;
+        }
+
+        .whole {
+            font-size: 5rem;
+            margin: 0;
+            vertical-align: baseline;
+        }
+
+        .decimal {
+            font-size: 2.5rem;
+            margin: 0;
+            margin-top: 26px;
+            vertical-align: baseline;
+        }
+
+        .button-grid {
+            display: flex;
+            gap: 22px;
+        }
+
+        .button,
+        .button-add {
+            padding-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .button:hover,
+        .button-add:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+        }
+
+        .container {
+            text-align: left; /* Aligns content to the left */
+            width: 100%; /* Ensures the container takes up the full width */
+        }
+        .logo-text-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Space between the text link and the paragraph */
+        }
+        .logo-text-container img {
+            margin-right: 10px; /* Adjust the spacing between the logo and text if necessary */
+        }
+        .logo-text-container a {
+            margin-left: 0; /* Remove any margin to the left of the text link */
+        }
+        
+        .cryptocurrencyimg {
+            width: 60px;
+        }
+        .logo-text-cce{
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px; /* Space between the text link and the paragraph */
+            margin-left: 15px;
+        }
+        .input-container {
+            display: none;
+            margin-top: 10px;
+        }
+        .input-container input {
+            margin: 5px;
+            padding: 5px;
+            border-radius: 15px;
+            background-color: #222f3c;
+            color: aliceblue;
+            font-size: 16px;
+        }
+        .input-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #222f3c;
+            color: aliceblue;
+            cursor: pointer;
+        }
+        .Dollars,
+        .Toncoin,
+        .Bitcoin {
+    margin-left: auto; /* This will push the element to the right */
+    margin-right: 15px; /* 10px margin from the right */
+    padding-top: 3px;
+    /* Additional styles as needed */
+    }
+
+    .proxies {
+    text-align: left; /* Aligns content to the left */
+    width: 100%; /* Ensures the container takes up the full width */
+    margin: 5px; /* Applies a 5px margin around the element */
+    margin-top: 5px; /* Specifically applies a 5px margin at the top */
+    z-index: auto;
+    position: absolute;
+    top: 0; /* Positions the element at the top of its containing element */
+    left: 0; /* Positions the element at the left of its containing element */
+}
+    </style>
+    <div class="proxies">
+        <img style="width: 10px;height: 10px;" src="img/active.gif"><span style="margin-left: 4px;">Securised</span>
+    </div>
+
+<h2 class="smalltext" style="color:#718498;">Total balance</h2>
+<div class="texxt">
+    <span class="currency" style="font-family:'trebuchet ms',sans-serif;">€</span>
+    <span class="whole">0.</span>
+    <span class="decimal">00</span>
+</div>
+
+      <div class="button-grid">
+        <div class="button" ">
+            <a href="send-sent.html"><img src="img/1.png" alt="Send Logo" class="logo"></a>
+            
+        </div>
+        <div class="button-add">
+            <img src="img/2.png" alt="Add Crypto Logo" class="logo">
+           
+        </div>
+        <div class="button">
+            <img src="img/3.png" alt="Exchange Logo" class="logo">
+            
+        </div>
+        <div class="button">
+            <img src="img/4.png" alt="P2P Market Logo" class="logo">
+        </div>  
+    </div>     
+    <div class="input-container">
+        <input type="text" id="wholeInput" value="0." placeholder="0.">
+        <input type="text" id="decimalInput" value="00" placeholder="00">
+        <input type="text" id="DollarsInput" value="€0.00" placeholder="0.00">
+        <input type="text" id="ToncoinInput" value="€0.00" placeholder="0.00">
+        <input type="text" id="BitcoinInput" value="€0.00" placeholder="0.00">
+        <button id="submitBtn">Submit</button>
+    </div>
+    <div class="separation" style="width: 100%;height:15px;background-color: #222f3c;margin: 10px;">
+
+    </div>
+    
+    <div class="container">
+        <div class="logo-text-container">
+            <img style="width: 30px;margin-left: 25px;margin-top: 5px;" src="img/5.png" alt="Logo">
+            <a style="margin-top: 5px;">Update Account Details</a>
+        </div>
+        <p style="margin-left: 25px;">Please provide your name, birth date, and phone number to continue using Wallet. All features except withdrawals now require updated account details.</p>
+        <a style="margin-left: 25px ; color:#3bbaff">Update</a>    
+    </div>
+    <div class="separation" style="width: 100%;height:15px;background-color: #222f3c;margin: 20px;"></div>
+
+<div class="container" >
+
+        <div class="logo-text-cce">
+            <img class='cryptocurrencyimg' src="img/6.png">
+            <a style="padding-left: 8px;">Wallet Earn</a>
+            <a class= "button" style="background-color: #3bbaff; padding-left: 15px;padding-right: 15px;padding-top: 5px;padding-bottom: 5px;border-radius: 12px; margin-left: auto;margin-right: 10px;">Open</a>
+        </div>
+
+        <div class="logo-text-cce">
+            <img class='cryptocurrencyimg' src="img/7.png">
+            <a style="padding-left: 8px;">Dollars</a>
+            <a class="Dollars" >€0.00</a>
+        </div>
+        <div class="logo-text-cce">
+            <img class='cryptocurrencyimg' src="img/8.png">
+            <a style="padding-left: 8px;">Toncoin</a>
+            <a  class="Toncoin">€0.00</a>
+        </div>
+        <div class="logo-text-cce">
+            <img class='cryptocurrencyimg' src="img/9.png">
+            <a style="padding-left: 8px;">Bitcoin</a>
+            <a  class="Bitcoin" >€0.00</a>
+        </div>
+
+</div>
+</body>
+<script>
+    document.querySelector('.button-add').addEventListener('click', function() {
+        // Show the input fields
+        document.querySelector('.input-container').style.display = 'block';
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        // Get the input values
+        const wholeValue = document.getElementById('wholeInput').value;
+        const decimalValue = document.getElementById('decimalInput').value;
+        const DollarsValue = document.getElementById('DollarsInput').value;
+        const ToncoinValue = document.getElementById('ToncoinInput').value;
+        const BitcoinValue = document.getElementById('BitcoinInput').value;
+
+        // Validate the input values
+        if (!wholeValue || !decimalValue) {
+            alert('Please enter both values.');
+            return;
+        }
+
+        // Update the text content of the elements
+        document.querySelector('.whole').textContent = wholeValue;
+        document.querySelector('.decimal').textContent = decimalValue;
+        document.querySelector('.Dollars').textContent = DollarsValue;
+        document.querySelector('.Toncoin').textContent = ToncoinValue;
+        document.querySelector('.Bitcoin').textContent = BitcoinValue;
+
+        // Hide the input fields
+        document.querySelector('.input-container').style.display = 'none';
+    });
+
+    // Hide Vertical Scrollbar  
+document.getElementById("element-id").style.overflowY = "hidden";  
+  
+  // Hide Horizontal Scrollbar  
+  document.getElementById("element-id").style.overflowX = "hidden";  
+    
+  // Hide Both Vertical and Horizontal Scrollbars  
+  document.getElementById("element-id").style.overflow = "hidden";  
+</script>
+</html>
